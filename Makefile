@@ -259,7 +259,7 @@ TAGS:
 	find . -name "*.[mhMH]" -exec etags -o ./TAGS -a '{}' +
 
 install: | Deployment backup-old-iterm
-	cp -R $(BUILD_DIR)/Deployment/iTerm2.app $(APPS)
+	cp -R $(BUILD_DIR)/Deployment/iTerm2.app $(APPS)/iTerm3.app
 
 Development:
 	echo "Using PATH for build: $(PATH)"
@@ -327,14 +327,14 @@ clean:
 	git checkout last-xcode-version
 
 backup-old-iterm:
-	if [[ -d $(APPS)/iTerm2.app.bak ]] ; then rm -fr $(APPS)/iTerm2.app.bak ; fi
-	if [[ -d $(APPS)/iTerm2.app ]] ; then \
-	/bin/mv $(APPS)/iTerm2.app $(APPS)/iTerm2.app.bak ;\
-	 cp $(ITERM_CONF_PLIST) $(APPS)/iTerm2.app.bak/Contents/ ; \
+	if [[ -d $(APPS)/iTerm3.app.bak ]] ; then rm -fr $(APPS)/iTerm3.app.bak ; fi
+	if [[ -d $(APPS)/iTerm3.app ]] ; then \
+	/bin/mv $(APPS)/iTerm3.app $(APPS)/iTerm3.app.bak ;\
+	 cp $(ITERM_CONF_PLIST) $(APPS)/iTerm3.app.bak/Contents/ ; \
 	fi
 
 restart:
-	PATH=$(ORIG_PATH) /usr/bin/open /Applications/iTerm2.app &
+	PATH=$(ORIG_PATH) /usr/bin/open /Applications/iTerm3.app &
 	/bin/kill -TERM $(ITERM_PID)
 
 release:
